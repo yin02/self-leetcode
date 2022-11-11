@@ -1,0 +1,39 @@
+### 思路
+
+在sorted数组，target与中间数比较大小，
+target< mid 向左查找
+target> mid 向右查找
+正好在中间直接返回
+
+### 代码
+
+
+```py
+class Solution(object):
+  def binarySearch(self, arr, target): 
+
+    n = len(arr)
+    l,r = 0, n-1
+      #corner case
+    if r<0:
+      return -1 
+    while l < r-1:
+      m = (l+r)//2 ##整除，防止溢出用 l + (r-l)//2
+      if arr[m] == target:
+        return m
+      if arr[m] < target:
+        l = m
+      else:
+        r = m
+    if arr[l] == target:
+       return l
+    if arr[r] == target:
+      return r
+    return -1
+
+
+```
+
+**复杂度分析**
+- 时间复杂度：O(logn)
+- 空间复杂度：O(1)
